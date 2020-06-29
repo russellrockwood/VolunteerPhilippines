@@ -3,10 +3,15 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 
-def index(request):
+def home(request):
     context = {
-        'message': 'whats up'
+        'message': 'home page'
     }
-    return render(request, 'volunteerapp/index.html', context)
+    return render(request, 'volunteerapp/home.html', context)
 
+def news(request):
+    context = {
+        'message': 'news page'
+    }
+    return render(request, 'volunteerapp/news.html', context)
 
