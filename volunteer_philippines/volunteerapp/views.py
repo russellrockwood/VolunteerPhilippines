@@ -15,3 +15,14 @@ def news(request):
     }
     return render(request, 'volunteerapp/news.html', context)
 
+def register(request):
+    context = {
+        'message': 'register page'
+    }
+    return render(request, 'volunteerapp/register.html', context)
+
+def login(request):
+    context = {
+        'message': 'login page'
+    }
+    return render(request, 'volunteerapp/login.html', context)
