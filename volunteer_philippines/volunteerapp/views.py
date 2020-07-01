@@ -1,13 +1,21 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render
+from .models import Organization, Post, User
 
 
 def home(request):
+    organizations = Organization.objects.all()
+    print(organizations)
+
     context = {
-        'message': 'home page'
+        'organizations': organizations
+        
     }
     return render(request, 'volunteerapp/home.html', context)
+
+
+
 
 def news(request):
     context = {
