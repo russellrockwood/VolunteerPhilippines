@@ -5,7 +5,7 @@ app_name = 'volunteerapp'
 urlpatterns = [
     path('home/', views.home, name='home'),
     path('news/', views.news, name='news'),
-    path('login/', views.login, name='login'),
+    path('login_page/', views.login_page, name='login_page'),
     path('register/', views.register, name='register'),
 ]
 

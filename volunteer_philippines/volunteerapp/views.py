@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import Organization, Post, User
+from .models import Organization, Post
+from django.contrib.auth.forms import UserCreationForm
 
 
 def home(request):
@@ -23,13 +24,20 @@ def news(request):
     }
     return render(request, 'volunteerapp/news.html', context)
 
+
+
 def register(request):
+   
     context = {
-        'message': 'register page'
+        'form': 'form'
     }
+
+
     return render(request, 'volunteerapp/register.html', context)
 
-def login(request):
+
+
+def login_page(request):
     context = {
         'message': 'login page'
     }
