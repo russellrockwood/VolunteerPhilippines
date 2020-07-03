@@ -2,12 +2,12 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render
 from .models import Organization, Post
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 
 def home(request):
     organizations = Organization.objects.all()
-    print(organizations)
+    
 
     context = {
         'organizations': organizations
@@ -27,13 +27,22 @@ def news(request):
 
 
 def register(request):
-   
-    context = {
-        'form': 'form'
-    }
+    message = 'Profile Created'
+    if request.method == 'POST':
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+        retype_password = request.POST['retype_password']
+        if password != retype_password:
+            message = 'Passwords Do Not Match'
+            return render(request, 'volunteerapp/register.html', {'message': message})
+        if User.objects.filter(username=username).exists():
+            message = 'That Username Already Exists'
+            return render(request, 'volunteerapp/register.html', {'message': message})
+        user = User.objects.create_user(username, email, password)
 
 
-    return render(request, 'volunteerapp/register.html', context)
+    return render(request, 'volunteerapp/register.html', {'message': message})
 
 
 

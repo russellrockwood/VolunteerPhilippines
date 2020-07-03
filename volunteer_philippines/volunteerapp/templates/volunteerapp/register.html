@@ -4,6 +4,46 @@
 {% block content %}
 
 <style>
+    @import url('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+    .isa_success,
+    .isa_warning,
+    .isa_error {
+        margin: 10px 0px;
+        padding: 12px;
+
+    }
+
+    .isa_success {
+        color: #4F8A10;
+        background-color: #DFF2BF;
+    }
+
+    .isa_warning {
+        color: #9F6000;
+        background-color: #FEEFB3;
+    }
+
+    .isa_error {
+        color: #D8000C;
+        background-color: #FFD2D2;
+    }
+
+    .isa_info i,
+    .isa_success i,
+    .isa_warning i,
+    .isa_error i {
+        margin: 10px 22px;
+        font-size: 2em;
+        vertical-align: middle;
+    }
+
+    .message {
+        color: darkred;
+        font-size: large;
+        font-family: monospace;
+    }
+
     h1 {
         text-align: center;
     }
@@ -35,7 +75,7 @@
         float: right;
         width: 25%;
         margin-left: 450px;
-        
+
     }
 
     input[type=submit]:hover {
@@ -81,19 +121,10 @@
 
 <h1>Register</h1>
 
-<!-- <form method="POST" action=" {% url 'volunteerapp:register' %} ">
-    {% csrf_token %}
-
-    <input type="text" name="username" placeholder="username">
-    <input type="email" name="email" placeholder="email">
-    <input type="password" name="password" placeholder="password">
-    <input type="password" name="retype_password" placeholder="retype_password">
-
-
-    <input type="submit" name="Create User"> -->
 
 <div class="container">
-    <form action="{% url 'volunteerapp:register' %}">
+    <form action="{% url 'volunteerapp:register' %}" method="POST">
+        {% csrf_token %}
         <div class="row">
             <div class="col-25">
                 <label for="fname">Username</label>
@@ -135,5 +166,22 @@
 </div>
 
 </form>
+
+{% if message ==  'That Username Already Exists' %}
+    <div class="isa_warning">
+        <i class="fa fa-warning"></i>
+        {{message}}
+    </div>
+{% elif message == 'Passwords Do Not Match' %}
+    <div class="isa_error">
+        <i class="fa fa-times-circle"></i>
+        {{message}}
+    </div>
+{% else %}
+    <div class="isa_success">
+        <i class="fa fa-check"></i>
+        {{message}}
+    </div>
+{% endif %}
 
 {% endblock %}
