@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseRedirect
 from .models import Organization, Post
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 
 def home(request):
@@ -40,14 +41,25 @@ def register(request):
             message = 'That Username Already Exists'
             return render(request, 'volunteerapp/register.html', {'message': message})
         user = User.objects.create_user(username, email, password)
-
+        login(request, user)
+        return HttpResponseRedirect(reverse('volunteerapp:news'))
 
     return render(request, 'volunteerapp/register.html', {'message': message})
 
 
 
 def login_page(request):
-    context = {
-        'message': 'login page'
-    }
-    return render(request, 'volunteerapp/login.html', context)
+    message = ''
+    if request.method == 'POST':
+
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return HttpResponseRedirect(reverse('volunteerapp:news'))
+        else:
+            message = 'invalid login'
+
+    return render(request, 'volunteerapp/login.html', {'message': message})
+    
