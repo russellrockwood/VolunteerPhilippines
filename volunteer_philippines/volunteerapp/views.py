@@ -4,6 +4,8 @@ from .models import Organization, Post
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
+
 
 
 def home(request):
@@ -49,7 +51,7 @@ def register(request):
 
 
 def login_page(request):
-    message = ''
+    
     if request.method == 'POST':
 
         username = request.POST['username']
@@ -59,7 +61,7 @@ def login_page(request):
             login(request, user)
             return HttpResponseRedirect(reverse('volunteerapp:news'))
         else:
-            message = 'invalid login'
+            return render(request, 'volunteerapp/login.html', {'message': 'Invalid Login '})
 
-    return render(request, 'volunteerapp/login.html', {'message': message})
+    return render(request, 'volunteerapp/login.html')
     
