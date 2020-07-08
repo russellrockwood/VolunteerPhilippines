@@ -22,15 +22,17 @@ def home(request):
 
 
 def news(request):
+    posts = Post.objects.all()
+    
     context = {
-        'message': 'news page'
+        'posts': posts
     }
     return render(request, 'volunteerapp/news.html', context)
 
 
 
 def register(request):
-    message = 'Profile Created'
+    message = ''
     if request.method == 'POST':
         username = request.POST['username']
         email = request.POST['email']
@@ -51,7 +53,7 @@ def register(request):
 
 
 def login_page(request):
-    
+    message = ''
     if request.method == 'POST':
 
         username = request.POST['username']
@@ -61,7 +63,11 @@ def login_page(request):
             login(request, user)
             return HttpResponseRedirect(reverse('volunteerapp:news'))
         else:
-            return render(request, 'volunteerapp/login.html', {'message': 'Invalid Login '})
+            return render(request, 'volunteerapp/login.html', {'message': 'Invalid Login'})
 
-    return render(request, 'volunteerapp/login.html')
+    return render(request, 'volunteerapp/login.html', {'message': message})
+
+def logout_user(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('volunteerapp:login_page'))
     

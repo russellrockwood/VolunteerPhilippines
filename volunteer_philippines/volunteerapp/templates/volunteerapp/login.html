@@ -2,12 +2,157 @@
 {% load static %}
 
 {% block content %}
+<style>
+    @import url('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+    .isa_success,
+    .isa_warning,
+    .isa_error {
+        margin: 10px 0px;
+        padding: 12px;
+
+    }
+
+    .isa_success {
+        color: #4F8A10;
+        background-color: #DFF2BF;
+    }
+
+    .isa_warning {
+        color: #9F6000;
+        background-color: #FEEFB3;
+    }
+
+    .isa_error {
+        color: #D8000C;
+        background-color: #FFD2D2;
+    }
+
+    .isa_info i,
+    .isa_success i,
+    .isa_warning i,
+    .isa_error i {
+        margin: 10px 22px;
+        font-size: 2em;
+        vertical-align: middle;
+    }
+
+    .message {
+        color: darkred;
+        font-size: large;
+        font-family: monospace;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    input {
+        width: 75%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+    }
+
+    label {
+        padding: 12px 12px 12px 0;
+        display: inline-block;
+    }
+
+    input[type=submit] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        float: right;
+        width: 25%;
+        margin-left: 450px;
+
+    }
+
+    input[type=submit]:hover {
+        background-color: #45a049;
+    }
+
+    .container {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+    }
+
+    .col-25 {
+        float: left;
+        width: 25%;
+        margin-top: 6px;
+    }
+
+    .col-75 {
+        float: left;
+        width: 75%;
+        margin-top: 6px;
+    }
+
+
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+
+    @media screen and (max-width: 600px) {
+
+        .col-25,
+        .col-75,
+        input[type=submit] {
+            width: 100%;
+            margin-top: 0;
+        }
+    }
+
+</style>
 
 <h1>login page</h1>
-<form action="{% url 'volunteerapp:login_page' %}" method="post">
-    {% csrf_token %}
-    <input type="text" name="username" placeholder="username" required />
-    <input type="password" name="password" placeholder="password" required />
-    <button type="submit">login</button>
-</form>
+
+<div class="container">
+    <form action="{% url 'volunteerapp:login_page' %}" method="POST">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-25">
+                <label for="fname">Username</label>
+            </div>
+            <div class="col-75">
+                <input type="text" name="username" placeholder="username" required autocomplete="off">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-25">
+                <label for="country">Password</label>
+            </div>
+            <div class="col-75">
+                <input type="password" name="password" placeholder="password" required autocomplete="off">
+            </div>
+        </div>
+
+        <div class="row">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+</div>
+{% if message == 'Invalid Login' %}
+    <div class="isa_error">
+        <i class="fa fa-times-circle"></i>
+        {{message}}
+    </div>
+{% else %}
+    {{message}}
+{% endif %}
 {% endblock %}

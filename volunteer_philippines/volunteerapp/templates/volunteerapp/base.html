@@ -35,6 +35,11 @@
             margin-right: auto;
             margin-top: 20px;
         }
+
+        body {
+            background-color: ivory;
+        }
+      
     </style>
 </head>
 
@@ -48,10 +53,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="#">News</a>
-                <a class="nav-item nav-link" href="#">Login</a>
-                <a class="nav-item nav-link" href="#" text>Register</a>
+                <a class="nav-item nav-link active" href="{% url 'volunteerapp:home' %}">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link active" href="{% url 'volunteerapp:news' %}">News</a>
+                <a class="nav-item nav-link" href="{% url 'volunteerapp:register' %}" text>Register</a>
+                <a class="nav-item nav-link" href="{% url 'volunteerapp:login_page' %}">Login</a>
+                <a class="nav-item nav-link" href="{% url 'volunteerapp:logout_user' %}">Logout</a>
                 <!-- <a class="nav-item nav-link" href="#">Pricing</a>
                 <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a> -->
             </div>
