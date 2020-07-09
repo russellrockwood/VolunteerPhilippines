@@ -18,8 +18,13 @@ def home(request):
     }
     return render(request, 'volunteerapp/home.html', context)
 
+def add_organization(request):
 
+    context = {
+        'message': 'Add Page'
+    }
 
+    return render(request, 'volunteerapp/add_organization.html', context)
 
 def news(request):
     posts = Post.objects.all()
