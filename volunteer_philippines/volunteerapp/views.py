@@ -18,13 +18,33 @@ def home(request):
     }
     return render(request, 'volunteerapp/home.html', context)
 
+
+
+
 def add_organization(request):
+    
+
+    if request.method == 'POST':
+        organization_name = request.POST["organization_name"]
+        organization_url = request.POST["organization_url"]
+        organization_description = request.POST["organization_description"]
+        organization_image = request.FILES.get("organization_image")
+        
+        organization = Organization(name = organization_name,
+                                    picture = organization_image,
+                                    description = organization_description,
+                                    org_link = organization_url,)
+
+        organization.save()
 
     context = {
         'message': 'Add Page'
     }
 
     return render(request, 'volunteerapp/add_organization.html', context)
+
+
+
 
 def news(request):
     posts = Post.objects.all()
@@ -71,6 +91,8 @@ def login_page(request):
             return render(request, 'volunteerapp/login.html', {'message': 'Invalid Login'})
 
     return render(request, 'volunteerapp/login.html', {'message': message})
+
+    
 
 def logout_user(request):
     logout(request)

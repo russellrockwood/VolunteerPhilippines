@@ -3,6 +3,31 @@
 
 {% block content %}
 
+
+<form action="{% url 'volunteerapp:add_organization' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <td><label for="input_organization_name">Organization Name</label></td>
+            <td><input id="input_organization_name" type="text" name="organization_name" required /></td>
+        </tr>
+        <tr>
+            <td><label for="input_organization_image">Image</label></td>
+            <td><input id="input_organization_image" type="file" name="organization_image" accept="image/*" /></td>
+        </tr>
+        <tr>
+            <td><label for="input_organization_url">Web Address</label></td>
+            <td><input id="input_organization_url" type="url" name="organization_url" required /></td>
+        </tr>
+
+        <tr>
+            <td><label for="input_description">Description</label></td>
+            <td><textarea id="input_description" name="organization_description"></textarea></td>
+        </tr>
+    </table>
+    
+    <button type="submit" title="click to create a new contact" class="btn btn-primary">Add New Organization</button>
+</form>
 {{message}}
 
 {% endblock %}
