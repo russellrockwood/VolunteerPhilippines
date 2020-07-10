@@ -20,7 +20,7 @@ def home(request):
 
 
 
-
+@login_required
 def add_organization(request):
     
 
@@ -36,12 +36,10 @@ def add_organization(request):
                                     org_link = organization_url,)
 
         organization.save()
+        return HttpResponseRedirect(reverse('volunteerapp:home'))
+    
 
-    context = {
-        'message': 'Add Page'
-    }
-
-    return render(request, 'volunteerapp/add_organization.html', context)
+    return render(request, 'volunteerapp/add_organization.html')
 
 
 
@@ -71,7 +69,7 @@ def register(request):
             return render(request, 'volunteerapp/register.html', {'message': message})
         user = User.objects.create_user(username, email, password)
         login(request, user)
-        return HttpResponseRedirect(reverse('volunteerapp:news'))
+        return HttpResponseRedirect(reverse('volunteerapp:home'))
 
     return render(request, 'volunteerapp/register.html', {'message': message})
 
@@ -86,7 +84,7 @@ def login_page(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect(reverse('volunteerapp:news'))
+            return HttpResponseRedirect(reverse('volunteerapp:home'))
         else:
             return render(request, 'volunteerapp/login.html', {'message': 'Invalid Login'})
 

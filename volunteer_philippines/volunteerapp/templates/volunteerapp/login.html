@@ -119,7 +119,7 @@
 
 </style>
 
-<h1>login page</h1>
+<h1>Login</h1>
 
 <div class="container">
     <form action="{% url 'volunteerapp:login_page' %}" method="POST">
@@ -146,6 +146,7 @@
             <input type="submit" value="Submit">
         </div>
     </form>
+    <span>Don't Have an Account? <a href="{% url 'volunteerapp:register' %}">Register Here</a></span>
 </div>
 {% if message == 'Invalid Login' %}
     <div class="isa_error">
