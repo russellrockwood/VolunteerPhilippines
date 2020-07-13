@@ -1,0 +1,16 @@
+{% extends 'volunteerapp/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+
+
+    {% for investment_model in investment_models %}
+        <div>{{investment_model.project}}</div>
+    {% endfor %}
+
+
+
+{% endblock %}

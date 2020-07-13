@@ -23,5 +23,10 @@ class Organization(models.Model):
     def __str__(self):
         return self.name
 
-
+class ReturnOnInvestment(models.Model):
+    project = models.CharField(max_length=250)
+    multiplier = models.IntegerField(default=0)
+    info = models.TextField()
+    def __str__(self):
+        return self.project
                                     

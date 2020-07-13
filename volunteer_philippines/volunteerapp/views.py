@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import Organization, Post
+from .models import Organization, Post, ReturnOnInvestment
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -51,6 +51,22 @@ def news(request):
         'posts': posts
     }
     return render(request, 'volunteerapp/news.html', context)
+
+
+
+
+def roi(request):
+    investment_models = ReturnOnInvestment.objects.all()
+    print(investment_models)
+
+    context = {
+            'investment_models': investment_models
+        }
+
+    return render(request, 'volunteerapp/roi.html', context)
+
+
+
 
 
 
