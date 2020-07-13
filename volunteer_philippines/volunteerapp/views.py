@@ -57,7 +57,14 @@ def news(request):
 
 def roi(request):
     investment_models = ReturnOnInvestment.objects.all()
-    print(investment_models)
+    # print(investment_models)
+
+    print(request.POST)
+    if request.method == 'POST':
+        projects = request.POST['projects']
+        dollar_amount = request.POST['dollar_amount']
+        print(projects)
+        print(dollar_amount)
 
     context = {
             'investment_models': investment_models

@@ -3,13 +3,25 @@
 
 
 {% block content %}
+<form action="{% url 'volunteerapp:roi' %}" method="POST">
+    {% csrf_token %}
+    <select name="projects" id="projects">
+        <option value="" disabled selected>Select a project</option>
+        {% for investment_model in investment_models %}
+        <option value="{{investment_model.project}}">{{investment_model.project}}</option>
+        {% endfor %}
+    </select>
 
+    <div>
+        <label for="input_dollar_amount">Enter a Dollar Amount to See a Return on Investment</label>
+        <input id="input_dollar_amount" type="text" class="field-divided" name="dollar_amount" />
 
-
-
-    {% for investment_model in investment_models %}
-        <div>{{investment_model.project}}</div>
-    {% endfor %}
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+</form>
+<!-- {% for investment_model in investment_models %}
+<div>{{investment_model.project}}</div>
+{% endfor %} -->
 
 
 
