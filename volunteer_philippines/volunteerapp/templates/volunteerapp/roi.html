@@ -3,12 +3,28 @@
 
 
 {% block content %}
+<style>
+    h1 {
+        margin-top: 20px;
+        text-align: center;
+        text-decoration: hsl(hue, saturation, lightness);
+    }
+    blockquote {
+        text-align: center;
+        margin: 40px;
+    }
+    form {
+        margin: 10px;
+    }
+</style>
+<h1>Copenhagen Consensus</h1>
+<blockquote>"If you had $75 billion for worthwhile causes, where should you start?"</blockquote>
 <form action="{% url 'volunteerapp:roi' %}" method="POST">
     {% csrf_token %}
     <select name="projects" id="projects">
         <option value="" disabled selected>Select a project</option>
         {% for investment_model in investment_models %}
-        <option value="{{investment_model.project}}">{{investment_model.project}}</option>
+        <option id="input_selected_project" value="{{investment_model.project}}">{{investment_model.project}}</option>
         {% endfor %}
     </select>
 
@@ -16,9 +32,38 @@
         <label for="input_dollar_amount">Enter a Dollar Amount to See a Return on Investment</label>
         <input id="input_dollar_amount" type="text" class="field-divided" name="dollar_amount" />
 
-        <button class="btn btn-primary" type="submit">Submit</button>
+        <button id="btn_convert" class="btn btn-primary" type="submit">Submit</button>
     </div>
+
 </form>
+
+{% if dollar_amount %}
+    <!-- <div>{{dollar_amount}}</div> -->
+    {% for item in selected_roi %}
+    <!-- <div id="selected_multiplier">{{item.multiplier}}</div> -->
+    <div> A ${{dollar_amount}} investment in {{item.project}} would return ${{test1}} worth of economic benefit.</div>
+    <div>{{item.info}}</div>
+    {% endfor %}
+{% endif %}
+
+
+<!-- <script>
+    let btn_convert = document.querySelector('#btn_convert')
+    let input_dollar_amount = document.querySelector('#input_dollar_amount')
+    let selected_multiplier = document.querySelector('#selected_multiplier')
+    let div_output = document.querySelector('#div_output')
+
+    btn_convert.addEventListener('click', function(){
+        let dollar_amount = input_dollar_amount.value
+        console.log(dollar_amount)
+        let multiplier = selected_multiplier.value
+        console.log(multiplier)
+        let output = dollar_amount * multiplier
+        console.log(output)
+        div_output.innerText = output
+    })
+</script> -->
+
 <!-- {% for investment_model in investment_models %}
 <div>{{investment_model.project}}</div>
 {% endfor %} -->

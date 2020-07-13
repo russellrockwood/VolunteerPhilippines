@@ -28,5 +28,6 @@ class ReturnOnInvestment(models.Model):
     multiplier = models.IntegerField(default=0)
     info = models.TextField()
     def __str__(self):
-        return self.project
+        return self.project + ' ' + self.info + ' ' +str(self.multiplier)
+    
                                     

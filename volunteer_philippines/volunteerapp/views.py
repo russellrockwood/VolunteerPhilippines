@@ -59,20 +59,35 @@ def roi(request):
     investment_models = ReturnOnInvestment.objects.all()
     # print(investment_models)
 
-    print(request.POST)
+    # print(request.POST)
+    
     if request.method == 'POST':
-        projects = request.POST['projects']
-        dollar_amount = request.POST['dollar_amount']
-        print(projects)
+        selected_project = request.POST['projects']
+        dollar_amount = int(request.POST['dollar_amount'])
+        print(selected_project)
         print(dollar_amount)
+        
+        selected_roi = ReturnOnInvestment.objects.filter(project=selected_project)
 
-    context = {
-            'investment_models': investment_models
+        selected_multiplier = ReturnOnInvestment.objects.get(project=selected_project)
+        test1 = selected_multiplier.multiplier
+        test1 *= dollar_amount
+
+        print(selected_roi)
+        context = {
+            'investment_models': investment_models,
+            'dollar_amount': dollar_amount,
+            'selected_roi': selected_roi,
+            'test1': test1
         }
 
+        
+    else:
+        ReturnOnInvestment.objects.all()
+        context = {
+            'investment_models': investment_models,
+        }
     return render(request, 'volunteerapp/roi.html', context)
-
-
 
 
 
