@@ -11,7 +11,7 @@ The VolunteerPhilippines project is intended to provide useful information to an
 
 -Home page that displays volunteer organizations with brief overview of each
 
--About pages; Select an organization to view more detailed information and events
+-Return on investment page. Allows user to enter a dollar amount and displays the projected return for world development goals.
 
 -Blog page that displays stories related to volunteer work in the Philippines
 
