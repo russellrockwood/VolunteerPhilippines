@@ -4,22 +4,47 @@
 
 {% block content %}
 <style>
-    h1 {
-        margin-top: 20px;
-        text-align: center;
-        text-decoration: hsl(hue, saturation, lightness);
-    }
-    blockquote {
-        text-align: center;
-        margin: 40px;
-    }
+    
+
     form {
         margin: 10px;
+
+    }
+
+    select#projects {
+        max-width: 250px;
+    }
+    blockquote {
+        font-style: italic;
+        font-size: 40px;
+        text-align: center;
+        margin-top: 35px;
+        margin-bottom: 30px;
+    }
+    .center {
+        display: block;
+        margin-top: 25px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
     }
 </style>
-<h1>Copenhagen Consensus</h1>
+
+
+
+
+<img src="{% static 'volunteerapp/header_pic.png' %}" class="center">
+
+<!-- <div class="top">
+    <span><img src="{% static 'volunteerapp/copenhagen_consensus_logo.jpg' %}" class="logo"></span>
+    <span class="head_title">Copenhagen Consensus</span>
+    <span><img src="{% static 'volunteerapp/scale.gif' %}" class="logo2"></span>
+</div> -->
+
 <blockquote>"If you had $75 billion for worthwhile causes, where should you start?"</blockquote>
-<form action="{% url 'volunteerapp:roi' %}" method="POST">
+
+
+<!-- <form action="{% url 'volunteerapp:roi' %}" method="POST">
     {% csrf_token %}
     <select name="projects" id="projects">
         <option value="" disabled selected>Select a project</option>
@@ -38,35 +63,16 @@
 </form>
 
 {% if dollar_amount %}
-    <!-- <div>{{dollar_amount}}</div> -->
-    {% for item in selected_roi %}
-    <!-- <div id="selected_multiplier">{{item.multiplier}}</div> -->
-    <div> A ${{dollar_amount}} investment in {{item.project}} would return ${{test1}} worth of economic benefit.</div>
-    <div>{{item.info}}</div>
-    {% endfor %}
-{% endif %}
+
+{% for item in selected_roi %}
+
+<div> A ${{dollar_amount}} investment in {{item.project}} would return ${{dis_roi}} worth of economic benefit.</div>
+<div>{{item.info}}</div>
+{% endfor %}
+{% endif %} -->
 
 
-<!-- <script>
-    let btn_convert = document.querySelector('#btn_convert')
-    let input_dollar_amount = document.querySelector('#input_dollar_amount')
-    let selected_multiplier = document.querySelector('#selected_multiplier')
-    let div_output = document.querySelector('#div_output')
 
-    btn_convert.addEventListener('click', function(){
-        let dollar_amount = input_dollar_amount.value
-        console.log(dollar_amount)
-        let multiplier = selected_multiplier.value
-        console.log(multiplier)
-        let output = dollar_amount * multiplier
-        console.log(output)
-        div_output.innerText = output
-    })
-</script> -->
-
-<!-- {% for investment_model in investment_models %}
-<div>{{investment_model.project}}</div>
-{% endfor %} -->
 
 
 

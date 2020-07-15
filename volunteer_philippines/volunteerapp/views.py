@@ -64,21 +64,20 @@ def roi(request):
     if request.method == 'POST':
         selected_project = request.POST['projects']
         dollar_amount = int(request.POST['dollar_amount'])
-        print(selected_project)
-        print(dollar_amount)
+       
         
         selected_roi = ReturnOnInvestment.objects.filter(project=selected_project)
 
         selected_multiplier = ReturnOnInvestment.objects.get(project=selected_project)
-        test1 = selected_multiplier.multiplier
-        test1 *= dollar_amount
+        dis_roi = selected_multiplier.multiplier
+        dis_roi *= dollar_amount
 
-        print(selected_roi)
+        
         context = {
             'investment_models': investment_models,
             'dollar_amount': dollar_amount,
             'selected_roi': selected_roi,
-            'test1': test1
+            'dis_roi': dis_roi
         }
 
         
