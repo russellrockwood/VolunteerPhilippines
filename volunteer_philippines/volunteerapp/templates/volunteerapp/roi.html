@@ -56,6 +56,8 @@
         padding: 20px;
         max-width: 800px;
         margin-left: 135px;
+        border-style: inset;
+        border-width: 3px;
 
     }
 
@@ -95,6 +97,34 @@
 
     blockquote p {
         display: inline;
+    }
+    hr {
+        width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    div.user_roi {
+        margin: 50px;
+    }
+    select {
+        margin-bottom: 30px;
+    }
+    div.returns {
+        margin-bottom: 20px;
+        margin-top: 50px;
+        font-size: 23px;
+    }
+    span.cash {
+        color: green;
+        font-weight: bolder;
+    }
+    div.div_footer {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    span.bottom_links {
+        margin-left: 40px;
+        margin-right: 40px;
     }
 </style>
 
@@ -155,35 +185,49 @@
     billion is necessary to make food more affordable.
 </blockquote>
 
-<form action="{% url 'volunteerapp:roi' %}" method="POST">
-    {% csrf_token %}
-    <select name="projects" id="projects">
-        <option value="" disabled selected>Select a project</option>
-        {% for investment_model in investment_models %}
-        <option id="input_selected_project" value="{{investment_model.project}}">{{investment_model.project}}</option>
-        {% endfor %}
-    </select>
 
-    <div>
-        <label for="input_dollar_amount">Enter a Dollar Amount to See a Return on Investment</label>
-        <input id="input_dollar_amount" type="text" class="field-divided" name="dollar_amount" placeholder="$" />
+<hr />
 
-        <button id="btn_convert" class="btn btn-primary" type="submit">Submit</button>
+<div class="user_roi">
+    <form action="{% url 'volunteerapp:roi' %}" method="POST">
+        {% csrf_token %}
+        <select name="projects" id="projects">
+            <option value="" disabled selected>Select a project</option>
+            {% for investment_model in investment_models %}
+            <option id="input_selected_project" value="{{investment_model.project}}">{{investment_model.project}}</option>
+            {% endfor %}
+        </select>
+
+        <div>
+            <!-- <label for="input_dollar_amount">Enter a Dollar Amount to See a Return on Investment</label> -->
+            <div> Enter a Dollar Amount to See a Return on Investment</div>
+            <input id="input_dollar_amount" type="text" class="field-divided" name="dollar_amount" placeholder="$" />
+
+            <button id="btn_convert" class="btn btn-primary" type="submit">Submit</button>
+        </div>
+
+    </form>
+
+    {% if dollar_amount %}
+
+    {% for item in selected_roi %}
+
+    <div class="returns"> A <span class="cash">${{dollar_amount}}</span>  investment in {{item.project}} would return <span class="cash">${{dis_roi}}</span>  worth of economic benefit.</div>
+    <div>{{item.info}}</div>
+    {% endfor %}
+    {% endif %}
+</div>
+
+<hr />
+
+<footer>
+    <div class="div_footer">
+        <span class="bottom_links"><a href="https://www.copenhagenconsensus.com/sites/default/files/cc12resultspressreleasefinal_0.pdf">Press Release</a></span>
+        <span class="bottom_links"><a href="https://www.copenhagenconsensus.com/sites/default/files/outcome_document_updated_1105.pdf">Outcome Document</a></span>
+        <span class="bottom_links"><a href="https://www.copenhagenconsensus.com/sites/default/files/post2015brochure_m.pdf">Charts</a></span>
+        
     </div>
-
-</form>
-
-{% if dollar_amount %}
-
-{% for item in selected_roi %}
-
-<div> A ${{dollar_amount}} investment in {{item.project}} would return ${{dis_roi}} worth of economic benefit.</div>
-<div>{{item.info}}</div>
-{% endfor %}
-{% endif %}
-
-
-
+</footer>
 
 
 
