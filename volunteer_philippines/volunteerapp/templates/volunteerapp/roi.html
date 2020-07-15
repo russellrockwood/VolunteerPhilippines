@@ -4,8 +4,6 @@
 
 {% block content %}
 <style>
-    
-
     form {
         margin: 10px;
 
@@ -14,19 +12,65 @@
     select#projects {
         max-width: 250px;
     }
+
     blockquote {
         font-style: italic;
         font-size: 40px;
         text-align: center;
         margin-top: 35px;
         margin-bottom: 30px;
+        box-shadow: 10px 10px 5px grey;
     }
+
     .center {
         display: block;
         margin-top: 25px;
         margin-left: auto;
         margin-right: auto;
         width: 50%;
+    }
+
+    .meeting {
+        margin-top: 50px;
+        display: flex;
+        align-items: center;
+
+    }
+
+    img.meeting_img {
+        max-width: 440px;
+        margin-left: 10px;
+        margin-right: 5px;
+        display: block;
+        background: transparent;
+        padding: 8px;
+        border: 1px solid #ccc;
+    }
+
+    span.meeting_text {
+        font-size: 22px;
+    }
+
+    ol {
+        background: #b9b9bd;
+        padding: 20px;
+        max-width: 800px;
+        margin-left: 135px;
+        
+    }
+
+
+
+    ol li {
+        background: #ecedee;
+        padding: 5px;
+        margin-left: 35px;
+    }
+    div.list_header {
+        text-align: center;
+        font-size: 20px;
+        margin-top: 90px;
+        margin-bottom: 30px;
     }
 </style>
 
@@ -35,14 +79,46 @@
 
 <img src="{% static 'volunteerapp/header_pic.png' %}" class="center">
 
-<!-- <div class="top">
-    <span><img src="{% static 'volunteerapp/copenhagen_consensus_logo.jpg' %}" class="logo"></span>
-    <span class="head_title">Copenhagen Consensus</span>
-    <span><img src="{% static 'volunteerapp/scale.gif' %}" class="logo2"></span>
-</div> -->
+
 
 <blockquote>"If you had $75 billion for worthwhile causes, where should you start?"</blockquote>
 
+
+
+<div class="meeting">
+    <img src="{% static 'volunteerapp/cc_meeting.jpg' %}" class="meeting_img">
+    <span class="meeting_text"> With regards to global development, asking how you would spend $75 billion is more than
+        just an intellectual exercise; it is a way to identify the areas of spending
+        where we could achieve the most good. It is also a way of identifying areas
+        where there isn't enough research, or where the benefits are not as big as we might assume. The Copenhagen
+        Consensus Center is a think tank that researches and publishes the
+        smartest solutions to the
+        world's biggest problems. Their studies are conducted by more than 300 economists from internationally renowned
+        institutions, including seven Nobel Laureates, to advise policymakers and philanthropists how to achieve the
+        best
+        results with their limited resources.</span>
+</div>
+
+
+<div class="list_header">Given the budget constraints, they found 16 investments worthy of investment (in descending order of desirability):</div>
+<ol>
+    <li>Bundled micronutrient interventions to fight hunger and improve education</li>
+    <li>Expanding the Subsidy for Malaria Combination Treatment </li>
+    <li>Expanded Childhood Immunization Coverage</li>
+    <li>Deworming of Schoolchildren, to improve educational and health outcomes </li>
+    <li>Expanding Tuberculosis Treatment </li>
+    <li>R&D to Increase Yield Enhancements, to decrease hunger, fight biodiversity destruction, and lessen the effects of climate change</li>
+    <li>Investing in Effective Early Warning Systems to protect populations against natural disaster</li>
+    <li>Strengthening Surgical Capacity </li>
+    <li>Hepatitis B Immunization </li>
+    <li>Using Low‐Cost Drugs in the case of Acute Heart Attacks in poorer nations (these are already available in developed countries)</li>
+    <li>Salt Reduction Campaign to reduce chronic disease</li>
+    <li>Geo‐Engineering R&D into the feasibility of solar radiation management</li>
+    <li>Conditional Cash Transfers for School Attendance </li>
+    <li>Accelerated HIV Vaccine R&D </li>
+    <li>Extended Field Trial of Information Campaigns on the Benefits From Schooling</li>
+    <li>Borehole and Public Hand Pump Intervention</li>
+</ol>
 
 <!-- <form action="{% url 'volunteerapp:roi' %}" method="POST">
     {% csrf_token %}
