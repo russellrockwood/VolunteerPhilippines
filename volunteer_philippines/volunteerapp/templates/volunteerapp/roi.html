@@ -13,7 +13,7 @@
         max-width: 250px;
     }
 
-    blockquote {
+    div.first_quote {
         font-style: italic;
         font-size: 40px;
         text-align: center;
@@ -56,7 +56,7 @@
         padding: 20px;
         max-width: 800px;
         margin-left: 135px;
-        
+
     }
 
 
@@ -66,11 +66,35 @@
         padding: 5px;
         margin-left: 35px;
     }
+
     div.list_header {
         text-align: center;
         font-size: 20px;
         margin-top: 90px;
         margin-bottom: 30px;
+    }
+
+    blockquote {
+        background: #f9f9f9;
+        border-left: 10px solid #ccc;
+        margin: 1.5em 10px;
+        padding: 0.5em 10px;
+        quotes: "\201C""\201D""\2018""\2019";
+        font-style: italic;
+        font-size: 30px;
+    }
+
+    blockquote:before {
+        color: #ccc;
+        content: open-quote;
+        font-size: 4em;
+        line-height: 0.1em;
+        margin-right: 0.25em;
+        vertical-align: -0.4em;
+    }
+
+    blockquote p {
+        display: inline;
     }
 </style>
 
@@ -81,7 +105,7 @@
 
 
 
-<blockquote>"If you had $75 billion for worthwhile causes, where should you start?"</blockquote>
+<div class="first_quote">"If you had $75 billion for worthwhile causes, where should you start?"</div>
 
 
 
@@ -96,22 +120,27 @@
         world's biggest problems. Their studies are conducted by more than 300 economists from internationally renowned
         institutions, including seven Nobel Laureates, to advise policymakers and philanthropists how to achieve the
         best
-        results with their limited resources.</span>
+        results with their limited resources. So what are the best ways of advancing global welfare, supposing $75
+        billion of resources over
+        a 4‐year period?</span>
 </div>
 
 
-<div class="list_header">Given the budget constraints, they found 16 investments worthy of investment (in descending order of desirability):</div>
+<div class="list_header">Given the budget constraints, they found 16 investments worthy of investment (in
+    descending order of desirability):</div>
 <ol>
     <li>Bundled micronutrient interventions to fight hunger and improve education</li>
     <li>Expanding the Subsidy for Malaria Combination Treatment </li>
     <li>Expanded Childhood Immunization Coverage</li>
     <li>Deworming of Schoolchildren, to improve educational and health outcomes </li>
     <li>Expanding Tuberculosis Treatment </li>
-    <li>R&D to Increase Yield Enhancements, to decrease hunger, fight biodiversity destruction, and lessen the effects of climate change</li>
+    <li>R&D to Increase Yield Enhancements, to decrease hunger, fight biodiversity destruction, and lessen the effects
+        of climate change</li>
     <li>Investing in Effective Early Warning Systems to protect populations against natural disaster</li>
     <li>Strengthening Surgical Capacity </li>
     <li>Hepatitis B Immunization </li>
-    <li>Using Low‐Cost Drugs in the case of Acute Heart Attacks in poorer nations (these are already available in developed countries)</li>
+    <li>Using Low‐Cost Drugs in the case of Acute Heart Attacks in poorer nations (these are already available in
+        developed countries)</li>
     <li>Salt Reduction Campaign to reduce chronic disease</li>
     <li>Geo‐Engineering R&D into the feasibility of solar radiation management</li>
     <li>Conditional Cash Transfers for School Attendance </li>
@@ -120,7 +149,13 @@
     <li>Borehole and Public Hand Pump Intervention</li>
 </ol>
 
-<!-- <form action="{% url 'volunteerapp:roi' %}" method="POST">
+<blockquote>
+    Fighting malnourishment should be the top priority for policy-makers and philanthropists. Researchers argue
+    that increasing annual global public investment in agricultural research and development from $8 billion to $13
+    billion is necessary to make food more affordable.
+</blockquote>
+
+<form action="{% url 'volunteerapp:roi' %}" method="POST">
     {% csrf_token %}
     <select name="projects" id="projects">
         <option value="" disabled selected>Select a project</option>
@@ -131,7 +166,7 @@
 
     <div>
         <label for="input_dollar_amount">Enter a Dollar Amount to See a Return on Investment</label>
-        <input id="input_dollar_amount" type="text" class="field-divided" name="dollar_amount" />
+        <input id="input_dollar_amount" type="text" class="field-divided" name="dollar_amount" placeholder="$" />
 
         <button id="btn_convert" class="btn btn-primary" type="submit">Submit</button>
     </div>
@@ -145,7 +180,7 @@
 <div> A ${{dollar_amount}} investment in {{item.project}} would return ${{dis_roi}} worth of economic benefit.</div>
 <div>{{item.info}}</div>
 {% endfor %}
-{% endif %} -->
+{% endif %}
 
 
 
