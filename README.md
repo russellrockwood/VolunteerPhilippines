@@ -7,17 +7,17 @@ The VolunteerPhilippines project is intended to provide useful information to an
 
 ## Data Functionality
 
--User registration page
-
 -Home page that displays volunteer organizations with brief overview of each
 
--Return on investment page. Allows user to enter a dollar amount and displays the projected return for world development goals.
+-User registration page/login/logout
 
--Blog page that displays stories related to volunteer work in the Philippines
+-Return on investment page. Allows user to enter a dollar amount and displays the projected return for world development goals. Contains Copenhagen Consensus research information
+
+-News page that displays stories related to volunteer work in the Philippines
 
 ## Data Model
 
--BlogPost
+-NewsPost
 
     -title (CharField)
     
@@ -26,6 +26,25 @@ The VolunteerPhilippines project is intended to provide useful information to an
     -date_posted (DateTimeField)
     
     -related_image (Charfield)
+
+-Organization
+
+    -title (CharField)
+    
+    -information (TextField)
+    
+    -url (UrlField)
+    
+    -related_image (Imagefield)
+
+-ReturnOnInvestment
+
+    -project (CharField)
+    
+    -multiplier (IntegerField)
+    
+    -info (Charfield)
+
 
 ## Schedule
 
@@ -50,7 +69,9 @@ The VolunteerPhilippines project is intended to provide useful information to an
    - Add blogposts/related news stories to blog section
     
 -Week 3 
-    
+
+  - Create ROI page and view  
+  
   - Make about pages for each organization listed
     
   - css/bootstrap styling
