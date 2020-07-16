@@ -35,10 +35,15 @@
         }
 
         a.nav-item.nav-link {
-           margin-left: 50px;
+           margin-left: 51.5px;
         }
-
-        
+        img.nav_img {
+            max-width: 45px;
+            margin-right: 8px;
+        }
+        a.navbar-brand {
+            font-size: 23px;
+        }
       
     </style>
 </head>
@@ -46,7 +51,7 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">Volunteer Philippines</a>
+        <a class="navbar-brand" href="#"><img src="{% static 'volunteerapp/standard_flag.png' %}" class="nav_img">Volunteer Philippines</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -58,7 +63,8 @@
                 <a class="nav-item nav-link active" href="{% url 'volunteerapp:roi' %}">ROI</a>
                 <a class="nav-item nav-link grey" href="{% url 'volunteerapp:register' %}" text>Register</a>
                 <a class="nav-item nav-link grey" href="{% url 'volunteerapp:login_page' %}">Login</a>
-                <a class="nav-item nav-link grey" href="{% url 'volunteerapp:logout_user' %}">Logout</a>
+                <a class="nav-item nav-link grey " href="{% url 'volunteerapp:logout_user' %}">Logout</a>
+                
                 <!-- <a class="nav-item nav-link" href="#">Pricing</a>
                 <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a> -->
             </div>

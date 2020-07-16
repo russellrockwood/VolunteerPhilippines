@@ -11,6 +11,7 @@
         margin-right: auto;
         margin-top: 20px;
         margin-bottom: 40px;
+        
     }
 
     .media {
@@ -21,6 +22,10 @@
     }
     a.btn.btn-info.btn-lg {
         margin-left: 20px;
+        margin-bottom: 15px;
+    }
+    span.login {
+        color: darkgrey;
     }
 </style>
 
@@ -83,7 +88,7 @@
 
 <a href="{% url 'volunteerapp:add_organization' %}" class="btn btn-info btn-lg">
     <span class="glyphicon glyphicon-plus"></span> Add Organization
-</a>
+</a> <span class="login">*Login Required</span>
 
 
 

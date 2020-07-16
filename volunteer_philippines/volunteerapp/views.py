@@ -20,26 +20,27 @@ def home(request):
 
 
 
-@login_required
 def add_organization(request):
-    
+    if request.user.is_authenticated:
 
-    if request.method == 'POST':
-        organization_name = request.POST["organization_name"]
-        organization_url = request.POST["organization_url"]
-        organization_description = request.POST["organization_description"]
-        organization_image = request.FILES.get("organization_image")
+        if request.method == 'POST':
+            organization_name = request.POST["organization_name"]
+            organization_url = request.POST["organization_url"]
+            organization_description = request.POST["organization_description"]
+            organization_image = request.FILES.get("organization_image")
+            
+            organization = Organization(name = organization_name,
+                                        picture = organization_image,
+                                        description = organization_description,
+                                        org_link = organization_url,)
+
+            organization.save()
+            return HttpResponseRedirect(reverse('volunteerapp:home'))
         
-        organization = Organization(name = organization_name,
-                                    picture = organization_image,
-                                    description = organization_description,
-                                    org_link = organization_url,)
 
-        organization.save()
-        return HttpResponseRedirect(reverse('volunteerapp:home'))
-    
-
-    return render(request, 'volunteerapp/add_organization.html')
+        return render(request, 'volunteerapp/add_organization.html')
+    else:
+        return render(request, 'volunteerapp/login.html')
 
 
 
